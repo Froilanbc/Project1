@@ -16,7 +16,7 @@ struct TPoint
     string tipo;                //gasolinera, cajero, restaurante,etc.
     float x;                    //coordenada x
     float y;                    //coordenada y
-    char c;                     //estado
+    char estado;                //estado
 };
 
 //Creamos la clase
@@ -44,16 +44,16 @@ public:
     void grabarArchivo()
     {
         ofstream archivo(nombreArchivo);
-        archivo << "Nombre, posición x, posición y" << endl;
+        archivo << "Nombre, tipo, posición x, posición y, estado" << endl;
         for (auto punto: listaPuntos)
-            archivo << punto.nombre << ", " << punto.x << ", " << punto.y << endl;
+            archivo << punto.nombre << ", " <<punto.tipo<< "," << punto.x << ", " << punto.y <<","<<punto.estado<< endl;
             archivo.close();
     }
     
     //Opción 1
-    void agregar( string nombre, string tipo, float x, float y, char c)
+    void agregar( string nombre, string tipo, float x, float y, char estado)
     {
-        listaPuntos.push_back({nombre,tipo,x,y,c});
+        listaPuntos.push_back({nombre,tipo,x,y,estado});
         grabarArchivo();
     }
     
@@ -109,7 +109,7 @@ int menu()
     {
         system("clear");
         // Saludo
-        cout << "¡Bienvenido a TuMapa! Este programa te ayudará a ubicar lugares como restaurantes, cajeros, paraderos y agregar tus lugares preferidos. " << endl;
+        cout << "¡Bienvenido a TuMapa! Este programa te ayudará a ubicar lugares como restaurantes, cajeros, paradero y agregar tus lugares preferidos. " << endl;
         cout << "MENÚ" << endl;
         cout << string (4, '-') << endl << endl;
         
@@ -139,7 +139,7 @@ int main()
     string nombre;
     string tipo;
     float x,y;
-    char c;
+    char estado;
     
     do
     {
@@ -150,12 +150,12 @@ int main()
         {
         case 1:     //Agregar puntos
             system("clear");
-            cout<<"Ingrese el nombre: "; cin>>nombre; 
+            cout<<"Ingrese el nombre: ";cin>> nombre;
             cout<<"Ingrese el tipo: "; cin>>tipo;
-            cout<<"Ingrese el valor de las abscisas(x): ";cin>>x;
+            cout<<"Ingrese el valor de las abscisas(x): ";cin>>x; 
             cout<<"Ingrese el valor de las ordenadas(y):";cin>>y;
-            cout<<"Ingrese el estado ( A=abierto, C=cerrado, D=desocupado ): ";cin>>c;
-            mapa.agregar(nombre,tipo,x,y,c);
+            cout<<"Ingrese el estado ( A=abierto, C=cerrado, D=desocupado ): ";cin>>estado;
+            mapa.agregar(nombre,tipo,x,y,estado);
             break;
             
         case 2:     //Eliminar punto
