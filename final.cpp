@@ -87,7 +87,6 @@ public:
         for (auto dato : lista) 
         {
             cout<<"Punto: "<<dato.nombre<<", "<<dato.tipo<<" ("<<dato.x<<", "<<dato.y<<") "<<dato.estado<<endl;
-            grabarArchivo();
         }
     }
     
@@ -136,7 +135,6 @@ public:
             {
                 d= sqrt( pow(dato.x-dato1.x,2)+pow(dato.y-dato1.y,2));
                 if(d==max({d}))
-                cout<<"La maxima distancia es: "<<max({d})<<endl;
                 break;
             }
         }
@@ -155,7 +153,7 @@ public:
                 break;
             }
         }
-        cout<<"La maxima distancia es: "<<min({d});
+        cout<<"La mínima distancia es: "<<min({d});
     }
     
     void tipoDeLugar()
@@ -227,6 +225,11 @@ int main()
     CMapa mapa;         //Mapa de Lima
     int opcion=0;
     
+    std::ifstream ifs;
+
+    ifs.open ("test.txt");
+    ifs.close();
+    
     vector<TPoint>lista;
     lista.push_back(TPoint{"UTEC,Universidad,20,18,A"});
     lista.push_back(TPoint{"METRO,Supermercado,35,8,A"});
@@ -242,8 +245,8 @@ int main()
     lista.push_back(TPoint{"BCP,Banco,45,15,A"});
     lista.push_back(TPoint{"BBVA,Banco,73,17,A"});
     lista.push_back(TPoint{"HORNERO,restaurant,12,35,A"});
-
-
+    
+    
     do
     {
         opcion = menu();        //Opción menu
