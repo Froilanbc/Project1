@@ -98,20 +98,6 @@ public:
     //lista de puntos (opcion 3)
     void listar()
     {
-        lista.push_back(TPoint{"UTEC","Universidad",20,18,'A'});
-        lista.push_back(TPoint{"METRO","Supermercado",35,8,'A'});
-        lista.push_back(TPoint{"MIFARMA","Farmacia",18,89,'A'});
-        lista.push_back(TPoint{"PUCP","Universidad",89,64,'A'});
-        lista.push_back(TPoint{"PETROPERU","Grifo",5,13,'A'});
-        lista.push_back(TPoint{"FUSEN","Chifa",33,56,'A'});
-        lista.push_back(TPoint{"PIURANO","Restaurant",75,19,'A'});
-        lista.push_back(TPoint{"RUSTICA","Discoteca",36,11,'A'});
-        lista.push_back(TPoint{"GOUPH","Bar",77,52,'A'});
-        lista.push_back(TPoint{"ESTADIO_NACIONAL","Estadio",9,14,'A'});
-        lista.push_back(TPoint{"HUACHIPA","Zoologico",103,93,'A'});
-        lista.push_back(TPoint{"BCP","Banco",45,15,'A'});
-        lista.push_back(TPoint{"BBVA","Banco",73,17,'A'});
-        lista.push_back(TPoint{"HORNERO","restaurant",12,35,'A'});
         for (auto dato : lista) 
         {
             cout<<"Punto: "<<dato.nombre<<", "<<dato.tipo<<" ("<<dato.x<<", "<<dato.y<<") "<<dato.estado<<endl;
@@ -134,7 +120,6 @@ public:
                 cout<<"Punto:" <<dato1.nombre<<", "<<dato1.tipo<<" ("<<dato1.x<<", "<<dato1.y<<") "<<dato1.estado<<endl;
             }
         }
-        grabarArchivo();
     }
     
     void distanciaPromedioEntrePuntos()
@@ -156,32 +141,30 @@ public:
     
     void mayorDistancia()
     {
-        float d=0.0;
+        double dmax=0.0;
         for (auto dato : lista) 
         {
             for (auto dato1 : lista) 
             {
-                d= sqrt( pow(dato.x-dato1.x,2)+pow(dato.y-dato1.y,2));
-                if(d==max({d}))
-                break;
+                if(max({pow(dato.x-dato1.x,2)}) && max({pow(dato.y-dato1.y,2)}))
+                dmax= max(sqrt( max({pow(dato.x-dato1.x,2)})+ max({pow(dato.y-dato1.y,2)})) ,dmax);
             }
         }
-        cout<<"La maxima distancia es: "<<max({d});
+        cout<<"La mayor  distancia es: "<<dmax;
     }   
     
     void menorDistancia()
     {
-        float d=0.0;
+        double dmin=1000;
         for (auto dato : lista) 
         {
             for (auto dato1 : lista) 
             {
-                d= sqrt( pow(dato.x-dato1.x,2)+pow(dato.y-dato1.y,2));
-                if(d==min({d}))
-                break;
+                if(dato.x!=dato1.x && dato.y!=dato1.y)
+                dmin= min(sqrt( min({pow(dato.x-dato1.x,2)})+ min({pow(dato.y-dato1.y,2)})),dmin);
             }
         }
-        cout<<"La mínima distancia es: "<<min({d});
+        cout<<"La mínima distancia es: "<<dmin;
     }
     
     void tipoDeLugar()
